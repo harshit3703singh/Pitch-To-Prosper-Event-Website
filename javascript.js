@@ -55,7 +55,7 @@ if(preLoader && loaderBar) {
 function initScrollAnimations() {
   gsap.utils.toArray('.fade-up').forEach(el => {
     gsap.from(el, {
-      y: 30, opacity: 0, duration: 0.8, ease: "power2.out",
+      y: 30, opacity: 0, duration: 0.8, delay: 0.5, ease: "power2.out",
       scrollTrigger: { trigger: el, start: 'top 85%' }
     });
   });
