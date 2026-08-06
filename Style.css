@@ -398,7 +398,7 @@ section { padding: 90px 0; position: relative; z-index: 2; }
     box-shadow: none; border: none; background: transparent; 
     padding-left: 1rem; padding-right: 0; display: none; pointer-events: auto; margin-top: 0.5rem;
   }
-  .nav-dropdown:hover .nav-dropdown-content, .nav-dropdown:active .nav-dropdown-content { display: flex; flex-direction: column; }
+  .nav-dropdown:hover .nav-dropdown-content, .nav-dropdown:active .nav-dropdown-content, .nav-dropdown.mobile-open .nav-dropdown-content { display: flex; flex-direction: column; }
   .nav-dropdown-content a { padding: 8px 15px; border-bottom: none; }
   
   .nav-cta { margin-left: 0; margin-top: 15px; text-align: center; }

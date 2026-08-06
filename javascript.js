@@ -14,7 +14,18 @@ const navLinks = document.querySelector('.nav-links');
 if (hamburger && navLinks) {
   hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
   document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('active'));
+    link.addEventListener('click', (e) => {
+      const dropdownParent = link.closest('.nav-dropdown');
+      if (dropdownParent && link === dropdownParent.querySelector('a')) {
+        // It's the toggle link, don't close the menu, just open the dropdown
+        e.preventDefault();
+        dropdownParent.classList.toggle('mobile-open');
+      } else {
+        // It's a regular link or an inner dropdown link, close everything
+        navLinks.classList.remove('active');
+        document.querySelectorAll('.nav-dropdown.mobile-open').forEach(d => d.classList.remove('mobile-open'));
+      }
+    });
   });
 }
 
