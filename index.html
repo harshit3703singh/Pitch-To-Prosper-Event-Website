@@ -107,7 +107,7 @@
             
             <!-- Countdown Timer -->
             <div class="countdown-container mt-3" style="margin-left: 0; text-align: left;">
-              <div class="countdown-title">Registrations Open In</div>
+              <div class="countdown-title">Event Starts In</div>
               <div id="countdown" class="countdown-timer" style="justify-content: flex-start;">
                 <div class="time-box"><span id="days">00</span><small>Days</small></div>
                 <div class="time-box"><span id="hours">00</span><small>Hours</small></div>
@@ -116,18 +116,23 @@
               </div>
             </div>
 
-            <div class="mt-3">
+            <div class="mt-3" style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
               <a href="https://forms.gle/BQgtHfiXY8w1y98g6" target="_blank" class="btn-primary register-btn">Register Now</a>
-              <div style="margin-top: 12px; font-size: 0.95rem; font-weight: 600; color: var(--text-muted);">Registration Fee: ₹500 per team</div>
+              
+              <div class="visitor-counter" style="background: rgba(0, 86, 179, 0.1); border: 1px solid rgba(0, 86, 179, 0.3); padding: 10px 18px; border-radius: 8px; color: var(--primary-blue-dark); font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; box-shadow: var(--shadow-sm);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>Visitors count: <span id="global-visitor-count">1000</span></span>
+              </div>
             </div>
+            <div style="margin-top: 12px; font-size: 0.95rem; font-weight: 600; color: var(--text-muted);">Registration Fee: ₹500 per team</div>
           </div>
 
           <!-- Right Column: Poster & Abstract Startup Graphic Card -->
           <div class="hero-graphic-col fade-up" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; gap: 1rem; position: relative; margin-top: -4rem;">
             
             <!-- New Poster Image -->
-            <div class="event-poster-container" style="max-width: 600px; width: 100%; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-hover); border: 2px solid rgba(255,255,255,0.8); transition: var(--transition);" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-              <img src="poster/poster.jpeg" alt="Pitch to Prosper 2026 Poster" style="width: 100%; height: auto; display: block; opacity: 0.7;">
+            <div class="event-poster-container" style="max-width: 380px; width: 100%; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-hover); border: 2px solid rgba(255,255,255,0.8); transition: var(--transition);" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+              <img src="poster/poster.jpeg" alt="Pitch to Prosper 2026 Poster" style="width: 100%; height: auto; display: block; opacity: 0.85;">
             </div>
 
             <!-- Ignite Your Startup Card (Moved down) -->
@@ -187,7 +192,7 @@
             <strong>Eligible Sectors:</strong> <span style="color: var(--text-muted);">Open across all domains (AgriTech, FinTech, EdTech, HealthTech, AI/ML, Clean Energy, etc.)</span>
           </div>
           <div class="info-box">
-            <strong>Team Size Requirement:</strong> <span style="color: var(--text-muted);">Each participating team must consist of <strong>4 to 6 members</strong>.</span>
+            <strong>Team Size Requirement:</strong> <span style="color: var(--text-muted);">Each participating team must consist of <strong>2 to 4 members</strong>.</span>
           </div>
           <div class="info-box">
             <strong>Registration Fee:</strong> <span style="color: var(--text-muted);">A nominal registration fee of <strong>₹500 per team</strong> is applicable.</span>
@@ -462,6 +467,19 @@
       </div>
     </section>
 
+    <!-- SECTION: About ABESIT Incubation Forum -->
+    <section id="abesit-incubation" class="section-abesit" style="background-color: var(--bg-surface);">
+      <div class="container text-center">
+        <h2 class="section-title">About ABESIT Incubation Forum</h2>
+        
+        <p class="fade-up mt-2 max-w text-left">The ABESIT Incubation Forum is dedicated to fostering an ecosystem of innovation and entrepreneurship among students and faculty. It provides essential resources, mentorship, and a collaborative environment to help transform creative ideas into viable business solutions and successful startups.</p>
+        
+        <div class="mt-4" style="margin-top: 2rem; margin-bottom: 2rem;">
+          <a href="https://incubation.abesit.in/" target="_blank" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; background-color: var(--primary-blue, #0056b3); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">Know More</a>
+        </div>
+      </div>
+    </section>
+
     <!-- SECTION: Core Committee -->
     <section id="committee" class="section-committee" style="background-color: var(--bg-surface);">
       <div class="container text-center">
@@ -657,7 +675,7 @@
             
             <div style="margin-bottom: 1rem;">
               <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-main);">Prof. Manish Kumar</div>
-              <div style="color: var(--primary-blue); font-weight: 600; font-size: 0.9rem; margin-top: 0.1rem;"><a href="tel:9760678805" style="color: inherit; text-decoration: none;">+91 99538 67649</a></div>
+              <div style="color: var(--primary-blue); font-weight: 600; font-size: 0.9rem; margin-top: 0.1rem;"><a href="tel:9760678805" style="color: inherit; text-decoration: none;">+91 97607 68805</a></div>
             </div>
             
             <div>
@@ -719,6 +737,16 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
         </div>
+        
+        <div class="collaboration-badge" style="margin-top: 2.5rem; margin-bottom: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;">
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px;">In Collaboration With</span>
+          <div style="display: flex; gap: 1.5rem; align-items: center; justify-content: center; margin-top: 0.2rem;">
+            <span style="font-size: 1.6rem; font-weight: 800; color: #00629B; letter-spacing: 1px;">IEEE</span>
+            <span style="font-size: 1.2rem; color: var(--border-color);">|</span>
+            <span style="font-size: 1.6rem; font-weight: 800; color: #0085CA; letter-spacing: 1px;">ACM</span>
+          </div>
+        </div>
+
         <div class="footer-info mt-3" style="border-top: 1px solid var(--border-color); padding-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
           <p>&copy; 2026 ABES Institute Of Technology. All Rights Reserved.</p>
         </div>

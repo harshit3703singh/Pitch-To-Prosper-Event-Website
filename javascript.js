@@ -99,7 +99,7 @@ function initScrollAnimations() {
 }
 
 // Countdown Timer Logic
-const targetDate = new Date('August 6, 2026 00:00:00').getTime();
+const targetDate = new Date('September 18, 2026 09:00:00').getTime();
 const countdownInterval = setInterval(() => {
   const now = new Date().getTime();
   const distance = targetDate - now;
@@ -126,3 +126,33 @@ const countdownInterval = setInterval(() => {
   if(elMinutes) elMinutes.innerText = minutes < 10 ? '0' + minutes : minutes;
   if(elSeconds) elSeconds.innerText = seconds < 10 ? '0' + seconds : seconds;
 }, 1000);
+
+// Visitor Counter Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const visitorCountEl = document.getElementById('global-visitor-count');
+  if (visitorCountEl) {
+    const baseCount = 1000;
+    
+    // Fetch global count
+    fetch('https://api.counterapi.dev/v1/abesit-pitch-to-prosper-2026/visits/up')
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.count) {
+          visitorCountEl.innerText = baseCount + data.count;
+        } else {
+          fallbackCounter(visitorCountEl, baseCount);
+        }
+      })
+      .catch(error => {
+        console.log('Counter API error:', error);
+        fallbackCounter(visitorCountEl, baseCount);
+      });
+      
+    function fallbackCounter(el, base) {
+      let localCount = parseInt(localStorage.getItem('abesit_local_visits') || '0');
+      localCount++;
+      localStorage.setItem('abesit_local_visits', localCount.toString());
+      el.innerText = base + localCount;
+    }
+  }
+});
