@@ -405,7 +405,17 @@ section { padding: 90px 0; position: relative; z-index: 2; }
   
   .nav-cta { margin-left: 0; margin-top: 15px; text-align: center; }
   
-  .hamburger { display: block; }
+  .hamburger { display: block; flex-shrink: 0; margin-left: 10px; }
+  
+  /* Shrink logos on mobile so hamburger is visible */
+  .nav-logo { gap: 6px !important; margin-left: -5px !important; }
+  .nav-logo > img { height: 28px !important; }
+  .nav-logo > div { gap: 6px !important; transform: translateY(-2px) !important; }
+  .nav-logo > div > img { height: 18px !important; }
+  .nav-content { padding: 0 1rem; }
+  
+  /* Ensure sections are not covered by sticky nav */
+  section { scroll-margin-top: var(--nav-height); }
   
   .about-grid, .timeline-steps { grid-template-columns: 1fr; }
   .bar-group { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
