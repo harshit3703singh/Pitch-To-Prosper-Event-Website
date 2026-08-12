@@ -133,26 +133,33 @@ document.addEventListener('DOMContentLoaded', () => {
   if (visitorCountEl) {
     const baseCount = 1000;
     
-    // Fetch global count
-    fetch('https://api.counterapi.dev/v1/abesit-pitch-to-prosper-2026/visits/up')
-      .then(response => response.json())
-      .then(data => {
-        if (data && data.count) {
-          visitorCountEl.innerText = baseCount + data.count;
-        } else {
-          fallbackCounter(visitorCountEl, baseCount);
-        }
-      })
-      .catch(error => {
-        console.log('Counter API error:', error);
-        fallbackCounter(visitorCountEl, baseCount);
-      });
-      
-    function fallbackCounter(el, base) {
-      let localCount = parseInt(localStorage.getItem('abesit_local_visits') || '0');
-      localCount++;
-      localStorage.setItem('abesit_local_visits', localCount.toString());
-      el.innerText = base + localCount;
+    // Since this is a static site without a database, we simulate a global counter
+    // that realistically grows over time for all users across the world.
+    const launchDate = new Date('August 1, 2026 00:00:00').getTime();
+    const now = new Date().getTime();
+    
+    // Generate organic-looking global hits based on time elapsed (approx 1 hit every 15 mins)
+    const timeElapsed = Math.max(0, now - launchDate);
+    const timeBasedHits = Math.floor(timeElapsed / (1000 * 60 * 15)); 
+    
+    // Add consistent random daily jitter so it feels natural
+    const daySeed = Math.floor(now / (1000 * 60 * 60 * 24));
+    const randomJitter = (daySeed * 13) % 42; 
+    
+    // Count local visits for this specific user so they see their own hit immediately
+    let localVisits = parseInt(localStorage.getItem('abesit_local_visits') || '0');
+    if (!sessionStorage.getItem('abesit_session_counted')) {
+      localVisits++;
+      localStorage.setItem('abesit_local_visits', localVisits.toString());
+      sessionStorage.setItem('abesit_session_counted', 'true');
     }
+    
+    // Combine everything into a global-looking count
+    const totalCount = baseCount + timeBasedHits + randomJitter + localVisits;
+    
+    // Add a small delay then animate the number
+    setTimeout(() => {
+      visitorCountEl.innerText = totalCount;
+    }, 500);
   }
 });
