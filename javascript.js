@@ -131,35 +131,63 @@ const countdownInterval = setInterval(() => {
 document.addEventListener('DOMContentLoaded', () => {
   const visitorCountEl = document.getElementById('global-visitor-count');
   if (visitorCountEl) {
-    const baseCount = 1000;
+    const baseCount = 3234;
+    const badgeUrl = 'https://api.visitorbadge.io/api/visitors?path=abesit-pitch-to-prosper-2026-dynamic';
     
-    // Since this is a static site without a database, we simulate a global counter
-    // that realistically grows over time for all users across the world.
-    const launchDate = new Date('August 1, 2026 00:00:00').getTime();
-    const now = new Date().getTime();
-    
-    // Generate organic-looking global hits based on time elapsed (approx 1 hit every 15 mins)
-    const timeElapsed = Math.max(0, now - launchDate);
-    const timeBasedHits = Math.floor(timeElapsed / (1000 * 60 * 15)); 
-    
-    // Add consistent random daily jitter so it feels natural
-    const daySeed = Math.floor(now / (1000 * 60 * 60 * 24));
-    const randomJitter = (daySeed * 13) % 42; 
-    
-    // Count local visits for this specific user so they see their own hit immediately
-    let localVisits = parseInt(localStorage.getItem('abesit_local_visits') || '0');
-    if (!sessionStorage.getItem('abesit_session_counted')) {
-      localVisits++;
-      localStorage.setItem('abesit_local_visits', localVisits.toString());
-      sessionStorage.setItem('abesit_session_counted', 'true');
+    // Helper to fetch and animate
+    const tryFetch = (url) => fetch(url).then(res => {
+      if(!res.ok) throw new Error("HTTP error");
+      return res.text();
+    });
+
+    // Try fetching the global hit counter, parse SVG to get the number, then animate
+    tryFetch(badgeUrl)
+      .catch(() => tryFetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(badgeUrl)}`))
+      .then(svgText => {
+        const matches = [...svgText.matchAll(/<text[^>]*>([0-9,]+)<\/text>/g)];
+        if (matches && matches.length > 0) {
+          let countStr = matches[matches.length - 1][1].replace(/,/g, '');
+          let globalCount = parseInt(countStr);
+          if (!isNaN(globalCount)) {
+            animateValue(visitorCountEl, baseCount, baseCount + globalCount, 1500);
+            return;
+          }
+        }
+        throw new Error("Could not parse count");
+      })
+      .catch(error => {
+        console.log("Using simulated fallback due to network/adblocker");
+        fallbackCounter();
+      });
+      
+    function fallbackCounter() {
+      // Time-based simulated fallback if network is blocked
+      const launchDate = new Date('August 1, 2026 00:00:00').getTime();
+      const now = new Date().getTime();
+      const timeBasedHits = Math.floor(Math.max(0, now - launchDate) / (1000 * 60 * 15)); 
+      
+      let localVisits = parseInt(localStorage.getItem('abesit_local_visits') || '0');
+      if (!sessionStorage.getItem('abesit_session_counted')) {
+        localVisits++;
+        localStorage.setItem('abesit_local_visits', localVisits.toString());
+        sessionStorage.setItem('abesit_session_counted', 'true');
+      }
+      animateValue(visitorCountEl, baseCount, baseCount + timeBasedHits + localVisits, 1500);
     }
-    
-    // Combine everything into a global-looking count
-    const totalCount = baseCount + timeBasedHits + randomJitter + localVisits;
-    
-    // Add a small delay then animate the number
-    setTimeout(() => {
-      visitorCountEl.innerText = totalCount;
-    }, 500);
+
+    function animateValue(obj, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerText = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          obj.innerText = end;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
   }
 });
