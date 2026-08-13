@@ -403,6 +403,10 @@ section { padding: 90px 0; position: relative; z-index: 2; }
   .nav-dropdown:hover .nav-dropdown-content, .nav-dropdown:active .nav-dropdown-content, .nav-dropdown.mobile-open .nav-dropdown-content { display: flex; flex-direction: column; }
   .nav-dropdown-content a { padding: 8px 15px; border-bottom: none; }
   
+  /* Prevent sticky hover "box" highlight on mobile when opening menu */
+  .nav-links a { -webkit-tap-highlight-color: transparent; outline: none; }
+  .nav-links a:hover { background: transparent; }
+  
   .nav-cta { margin-left: 0; margin-top: 15px; text-align: center; }
   
   .hamburger { display: block; flex-shrink: 0; margin-left: 10px; }
