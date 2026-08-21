@@ -460,3 +460,82 @@ section { padding: 90px 0; position: relative; z-index: 2; }
     margin-top: 2rem !important;
   }
 }
+/* Guest Cards for Chief Guest & Guest of Honour */
+.guest-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  width: calc(50% - 1.5rem);
+  max-width: 480px;
+  box-shadow: 0 10px 30px rgba(10, 53, 104, 0.05);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.guest-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border-color: rgba(201, 168, 76, 0.5); /* Gold border on hover from spartan theme */
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.guest-card::before {
+  display: none;
+}
+
+.guest-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--primary-blue-dark);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+  transition: transform 0.5s ease;
+  z-index: 1;
+}
+
+.guest-card:hover .guest-img {
+  transform: scale(1.05);
+  border-color: var(--accent-orange);
+}
+
+.guest-info {
+  z-index: 1;
+}
+
+.guest-name {
+  font-size: 1.5rem;
+  color: var(--primary-blue-dark);
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+}
+
+.guest-role {
+  font-size: 1.1rem;
+  color: var(--accent-orange);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.guest-designation {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 800px) {
+  .guest-card {
+    width: 100%;
+  }
+}
